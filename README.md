@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # social-network-kt
 
 > A Vue.js project
@@ -25,3 +26,7 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# keepintouch
+This is a social network to help students in Europe to keep in touch each other.
+>>>>>>> f857c6ffd176b16f837f15b1ce9650a29d2dd4ca
