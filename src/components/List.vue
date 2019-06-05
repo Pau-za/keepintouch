@@ -2,8 +2,13 @@
   <div>
     <md-list>
       <md-list-item>
-        <li v-for="fruit of fruits" key="" class="md-list-item-text">{{fruit.name}} <p>{{fruit.quantity}}</p></li>
-        <!-- <span v-for="fruit of fruits" class="md-list-item-text">{{fruit.quantity}}</span> -->
+        <ul>
+          <li v-for="(fruit,index) of fruits" :key="index" @click="increment(index)"
+          class="md-list-item-text">
+            {{fruit.name}}
+            <span>{{fruit.quantity}}</span>
+          </li>
+        </ul>
       </md-list-item>
     </md-list>
   </div>
@@ -11,12 +16,15 @@
 
 <script>
 import store from "../store";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "List",
   computed: {
     ...mapState(["fruits"])
+  },
+  methods:{
+    ...mapMutations(["increment"])
   }
 };
 </script>

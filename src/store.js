@@ -26,7 +26,9 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-
+    increment(state, index){
+      state.fruits[index].quantity ++
+    }
   },
   actions: {
 
