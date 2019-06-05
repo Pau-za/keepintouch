@@ -2,7 +2,7 @@
   <div>
     <md-list>
       <md-list-item>
-        <li v-for="fruit of fruits" class="md-list-item-text">{{fruit.name}} <p>{{fruit.quantity}}</p></li>
+        <li v-for="fruit of fruits" key="" class="md-list-item-text">{{fruit.name}} <p>{{fruit.quantity}}</p></li>
         <!-- <span v-for="fruit of fruits" class="md-list-item-text">{{fruit.quantity}}</span> -->
       </md-list-item>
     </md-list>
