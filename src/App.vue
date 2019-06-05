@@ -1,24 +1,29 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <div>
+      <router-link to="/">Home</router-link>
+      <router-link to="/source">Source</router-link>
+    </div>
     <router-view/>
-    <List></List>
+    <!-- Acá abajo importo el componente List dentro del html -->
+    
   </div>
 </template>
 
 <script>
-import List from '@/components/List'
+
+// import Source from '@/components/List'
+
 export default {
-  name: 'App',
-  components: {
-    List
-  }
-}
+  name: "App"
+ 
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

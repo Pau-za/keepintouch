@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Header from '@/components/Pruebavue'
+import Header from '@/vews/Pruebavue'
+import Source from '@/vews/Source'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 
 Vue.use(Router)
 Vue.use(VueMaterial)
+
+//en este archivo únicamente se importan las vistas
 
 export default new Router({
   routes: [
@@ -13,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'Header',
       component: Header
+    },
+    {
+      path: '/source',
+      name: 'Source',
+      component: Source
     }
   ]
 })

@@ -3,11 +3,16 @@
     <md-list>
       <md-list-item>
         <ul>
-          <li v-for="(fruit,index) of fruits" :key="index" @click="increment(index)"
-          class="md-list-item-text">
+          <li
+            v-for="(fruit,index) of orderedArr"
+            :key="index"
+            @click="increment(index)"
+            class="md-list-item-text"
+          >
             {{fruit.name}}
             <span>{{fruit.quantity}}</span>
           </li>
+          <button @click="reStart" class="md-fab">Reiniciar</button>
         </ul>
       </md-list-item>
     </md-list>
@@ -21,10 +26,13 @@ import { mapState, mapMutations } from "vuex";
 export default {
   name: "List",
   computed: {
-    ...mapState(["fruits"])
+    ...mapState(["fruits"]),
+    orderedArr(){
+      return this.fruits.sort((a,b) => b.quantity - a.quantity)
+    }
   },
-  methods:{
-    ...mapMutations(["increment"])
+  methods: {
+    ...mapMutations(["increment", "reStart"])
   }
 };
 </script>
