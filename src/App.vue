@@ -1,24 +1,32 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <router-link to="/">Home</router-link>
-      <router-link to="/source">Source</router-link>
-      <router-link to="/pictures/:id">Fotografías</router-link>
-    </div>
+    <nav>
+      <div class="nav-wrapper light-blue darken-1">
+        <a href="#" class="brand-logo right">Logo</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li>
+            <router-link to="/">Home</router-link>
+          </li>
+          <li>
+        <router-link to="/source">Source</router-link>
+          </li>
+          <li>
+        <router-link to="/pictures/:id">Fotografías</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div></div>
     <router-view/>
     <!-- Acá abajo importo el componente List dentro del html -->
-    
   </div>
 </template>
 
 <script>
-
 // import Source from '@/components/List'
 
 export default {
   name: "App"
- 
 };
 </script>
 
@@ -29,6 +37,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 0%; */
 }
 </style>
