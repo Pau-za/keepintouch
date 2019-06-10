@@ -4,6 +4,7 @@
     <div>
       <router-link to="/">Home</router-link>
       <router-link to="/source">Source</router-link>
+      <router-link to="/pictures/:id">Fotografías</router-link>
     </div>
     <router-view/>
     <!-- Acá abajo importo el componente List dentro del html -->
