@@ -2,14 +2,15 @@
   <div>
     <h3>Welcome to KeepInTouch</h3>
     <h5>Do you have an account?</h5>
-    <router-link to="//login">
+    
       <a class="waves-effect waves-light btn-large light-blue darken-1"
-      v-if: @click="show != show">Login</a>
-    </router-link>
-    <router-link to="//register">
-      <a class="waves-effect waves-light btn-large light-blue darken-1">Register</a>
-    </router-link>
-    <Loginform/>
+      @click="login =! login">Login</a>
+    
+    
+      <a class="waves-effect waves-light btn-large light-blue darken-1"
+      @click="signIn =! signIn">Sign in</a>
+    
+    <Loginform v-if="login === true"/>
   </div>
 </template>
 
@@ -20,8 +21,11 @@ export default {
   components: {
     Loginform
   },
-  data:{
-      show: false,
+  data() {
+    return {
+      login : false,
+      signIn : false,
+    };
   }
 };
 </script>
