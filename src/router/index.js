@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Header from '@/vews/Pruebavue'
-import Source from '@/vews/Source'
-import Pictures from '@/vews/Pictures'
+import Source from '@/views/Source'
+import Pictures from '@/views/Pictures'
 import VueMaterial from 'vue-material'
-import login from '@/vews/Login'
+import login from '@/views/Login'
 import 'vue-material/dist/vue-material.min.css'
 
 Vue.use(Router)
@@ -15,7 +15,7 @@ Vue.use(VueMaterial)
 export default new Router({
   routes: [
     {
-      path: '/:status',
+      path: '/',
       name: 'login',
       component: login
     },
