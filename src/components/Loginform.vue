@@ -4,28 +4,28 @@
       <form class="col s12">
         <div class="row">
           <div class="input-field col s6">
-            <input id="first_name" type="text" class="validate">
+            <input id="first_name" type="text" class="validate" v-model="firstName">
             <label for="first_name">First Name</label>
           </div>
           <div class="input-field col s6">
-            <input id="last_name" type="text" class="validate">
+            <input id="last_name" type="text" class="validate" v-model="lastName">
             <label for="last_name">Last Name</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="password" type="password" class="validate">
-            <label for="password">Password</label>
+            <input id="email" type="email" class="validate" v-model="email">
+            <!-- <label for="email">Email</label> -->
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
+            <input id="password" type="password" class="validate" v-model="password">
+            <!-- <label for="password">Password</label> -->
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col s12">
             This is an inline input field:
             <div class="input-field">
@@ -34,13 +34,14 @@
               <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
             </div>
           </div>
-        </div>
+        </div>-->
       </form>
       <div>
         <button
           class="btn waves-effect waves-light light-blue darken-1"
           type="submit"
           name="action"
+          @click="register()"
         >
           Submit
           <i class="material-icons right">send</i>
@@ -52,8 +53,40 @@
 
 <script>
 import submitbtn from "@/components/Submitbtn";
+import store from "../store";
+import { mapState, mapMutations } from "vuex";
+// import { fb } from "../js/firebase";
+
 export default {
-  name: "Loginform"
+  name: "Loginform",
+  props: {
+    msj: String
+  },
+  data() {
+    return {
+      firstName: null,
+      lastName: null,
+      email: null,
+      password: null
+    };
+  },
+  computed: {
+    ...mapMutations(["register"])
+    // register(){
+    //   fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+    //     .catch(function (error) {
+    //       // Handle Errors here.
+    //       var errorCode = error.code;
+    //       var errorMessage = error.message;
+    //       if (errorCode == 'auth/weak-password') {
+    //         alert('The password is too weak.');
+    //       } else {
+    //         alert(errorMessage);
+    //       }
+    //       console.log(error);
+    //     });
+    // }
+  }
 };
 </script>
 
