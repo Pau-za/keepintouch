@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Header from '@/vews/Pruebavue'
-import Source from '@/views/Source'
+import Feed from '@/views/Feed'
 import Pictures from '@/views/Pictures'
 import VueMaterial from 'vue-material'
 import login from '@/views/Login'
@@ -20,9 +20,9 @@ export default new Router({
       component: login
     },
     {
-      path: '/source',
-      name: 'Source',
-      component: Source
+      path: '/feed',
+      name: 'Feed',
+      component: Feed
     },
     { //Rutas dinámicas
       path: '/pictures/:id',

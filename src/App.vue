@@ -3,12 +3,13 @@
     <nav>
       <div class="nav-wrapper light-blue darken-1">
         <a href="#" class="brand-logo right">Logo</a>
+        <!-- Agregar botón de logout -->
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li>
             <router-link to="/">Home</router-link>
           </li>
           <li>
-        <router-link to="/source">Source</router-link>
+        <router-link to="/feed">Feed</router-link>
           </li>
           <li>
         <router-link to="/pictures/:id">Fotografías</router-link>
