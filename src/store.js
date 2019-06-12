@@ -9,7 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     users: [{
-        id: 'kmqiwje23',
+        // id: 'kmqiwje23',
         email: 'molo_pau@hotmail.com',
         name: 'pau'
       }
@@ -28,21 +28,22 @@ export default new Vuex.Store({
       state.fruits.forEach(element => {
         element.quantity = 0;
       })
-    },
-    register() {
-      fb.auth().createUserWithEmailAndPassword(email, password)
-        .catch(function (error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          if (errorCode == 'auth/weak-password') {
-            alert('The password is too weak.');
-          } else {
-            alert(errorMessage);
-          }
-          console.log(error);
-        });
     }
+    // register(state) {
+    //   console.log(state.users.email,state.users.password);
+    //   fb.auth().createUserWithEmailAndPassword(state.users.email, state.users.password)
+    //     .catch(function (error) {
+    //       // Handle Errors here.
+    //       var errorCode = error.code;
+    //       var errorMessage = error.message;
+    //       if (errorCode == 'auth/weak-password') {
+    //         alert('The password is too weak.');
+    //       } else {
+    //         alert(errorMessage);
+    //       }
+    //       console.log(error);
+    //     });
+    // }
   },
   actions: {
 
