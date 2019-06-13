@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Vista del feed general de publicaciones</h1>
+        <h1>General Feed</h1>
     </div>
 </template>
 
