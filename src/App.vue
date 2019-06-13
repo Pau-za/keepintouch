@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav>
-      <div class="nav-wrapper indigo darken-4">
+      <div class="nav-wrapper grey darken-4">
         <a href="#" class="brand-logo right">
           <img src="./assets/filled-logo.png" alt="mer-logo" class="mer-logo">
         </a>

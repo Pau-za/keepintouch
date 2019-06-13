@@ -7,10 +7,10 @@
     <h5>The social network for MER students</h5>
     <h6>Do you have an account?</h6>
     
-      <a class="waves-effect waves-light btn-large indigo darken-4"
+      <a class="waves-effect waves-light btn-large light-blue darken-1"
       @click="login =! login">Login</a>
     
-      <a class="waves-effect waves-light btn-large indigo darken-4"
+      <a class="waves-effect waves-light btn-large light-blue darken-1"
       @click="signIn =! signIn">Sign in</a>
     
     <Loginform v-if="login === true"/>
