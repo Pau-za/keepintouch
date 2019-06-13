@@ -44,6 +44,7 @@
 // import store from "../store";
 // import { mapState, mapMutations } from "vuex";
 import { fb } from "../js/firebase";
+
 export default {
   name: "Singinform",
   props: {

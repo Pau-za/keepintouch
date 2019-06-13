@@ -33,7 +33,7 @@
       </form>
       <div>
         <button
-          class="btn waves-effect waves-light light-blue darken-1"
+          class="btn waves-effect waves-light indigo darken-4"
           type="submit"
           name="action"
         >
