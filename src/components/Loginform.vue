@@ -4,7 +4,7 @@
       <form class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="email" name="email" class="validate">
+            <input id="email" type="email" name="email" class="validate" v-model="email">
             <label for="email">Email</label>
           </div>
         </div>
@@ -15,43 +15,46 @@
               type="password"
               name="password"
               class="validate"
-             
+              v-model="password"
             >
             <label for="password">Password</label>
           </div>
         </div>
-        <!-- <div class="row">
-          <div class="col s12">
-            This is an inline input field:
-            <div class="input-field">
-              <input id="email_inline" type="email" class="validate">
-              <label for="email_inline">Email</label>
-              <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
-            </div>
-          </div>
-        </div>-->
       </form>
       <div>
         <button
           class="btn waves-effect waves-light indigo darken-4"
           type="submit"
           name="action"
+          @click="knownUser({email, password})"
         >
           Submit
           <i class="material-icons right">send</i>
         </button>
       </div>
     </div>
+    <p>{{ error }}</p>
   </div>
 </template>
 
 <script>
 // import submitbtn from "@/components/Submitbtn";
-
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "Loginform",
-  
+  data() {
+    return {
+      email: null,
+      password: null
+    };
+  },
+  methods: {
+    ...mapActions(["knownUser"])
+  },
+  computed: {
+    ...mapState(["error"])
+  }
 };
 </script>
 
