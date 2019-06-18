@@ -17,7 +17,7 @@
             <router-link to="/pictures/:id">Fotografías</router-link>
           </li> -->
           <li>
-            <a class="waves-effect waves-light btn light-blue darken-1" @click="logout()">
+            <a class="waves-effect waves-light btn light-blue darken-1" @click="signOut()">
               Sign out
               <i class="material-icons right">exit_to_app</i>
             </a>
@@ -32,23 +32,12 @@
 </template>
 
 <script>
-// import Source from '@/components/List'
-import { fb } from "./js/firebase";
+import { mapActions } from "vuex";
 
 export default {
   name: "App",
   methods: {
-    logout() {
-      fb.auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace("/");
-          console.log('usuario salió de la app existosamente');
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+    ...mapActions(['signOut'])
   }
 };
 </script>

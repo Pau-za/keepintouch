@@ -4,7 +4,7 @@
       <form class="col s12" >
         <div class="row">
           <div class="input-field col s6">
-            <input id="first_name" type="text" class="validate" v-model="firstName">
+            <input id="first_name" type="text" class="validate" v-model="displaytName">
             <label for="first_name">First Name</label>
           </div>
           <div class="input-field col s6">
@@ -60,7 +60,7 @@ export default {
   },
   data() {
     return {
-        firstName: null,
+        displayName: null,
         lastName: null,
         email: null,
         password: null,
@@ -69,26 +69,6 @@ export default {
   },
   methods: {
     ...mapActions(['createUser'])
-    // ...mapMutations(["register"]),
-    // register() {
-    //   fb.auth()
-    //     .createUserWithEmailAndPassword(this.user.email, this.user.password)
-    //     .then((user) => {
-    //       this.$router.replace('feed');
-    //     })
-    //     .catch(function(error) {
-    //       // Handle Errors here.
-    //       var errorCode = error.code;
-    //       var errorMessage = error.message;
-    //       if (errorCode == "auth/weak-password") {
-    //         alert("The password is too weak.");
-    //       } else {
-    //         alert(errorMessage);
-    //       }
-    //       console.log(error);
-    //     });
-    //   console.log("registro exitoso.");
-    // }
   },
   computed:{
    ...mapState(['error']),

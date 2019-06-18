@@ -32,11 +32,10 @@ export default new Vuex.Store({
           console.log(res.user.uid);
           commit('setUser', {
             email: res.user.email,
-            uid: res.user.uid
+            uid: res.user.uid,
+            displayName: res.user.displayName
           });
-          router.push({
-            name: 'feed'
-          });
+          router.replace('feed');
         })
         .catch((error) => {
           console.log(error.message);
@@ -47,19 +46,31 @@ export default new Vuex.Store({
       commit
     }, payload) {
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
-      .then(res => {
-        console.log(res.user.uid);
-        commit('setUser', {
-          email: res.user.email,
-          uid: res.user.uid
+        .then(res => {
+          console.log(res.user.uid);
+          commit('setUser', {
+            email: res.user.email,
+            uid: res.user.uid
+          });
+          router.replace('feed');
+        }).catch((error) => {
+          console.log(error);
+          commit('setError', error.message);
         });
-        router.push({
-          name: 'feed'
-        });
-      }).catch((error) => {
-        console.log(error);
-        commit('setError', error.message);
-      });
+    },
+    observer({
+      commit
+    }, payload) {
+      commit('setUser', {
+        email: payload.email,
+        uid: payload.uid,
+        displayName: payload.displayName
+      })
+    },
+    signOut({commit}){
+      firebase.auth().signOut();
+      commit('setUser',null);
+      router.replace('/');
     }
   }
 })
