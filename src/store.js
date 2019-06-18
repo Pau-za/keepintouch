@@ -61,16 +61,29 @@ export default new Vuex.Store({
     observer({
       commit
     }, payload) {
-      commit('setUser', {
-        email: payload.email,
-        uid: payload.uid,
-        displayName: payload.displayName
-      })
+      if(payload != null){
+        commit('setUser', {
+          email: payload.email,
+          uid: payload.uid,
+          displayName: payload.displayName
+        })
+      }else{
+        commit('setUser', null)
+      }
     },
     signOut({commit}){
       firebase.auth().signOut();
       commit('setUser',null);
       router.replace('/');
+    }
+  },
+  getters:{
+    isAUser(state){
+      if(state.user === null || state.user === '' || state.user === undefined){
+        return false;
+      }else{
+        return true;
+      }
     }
   }
 })

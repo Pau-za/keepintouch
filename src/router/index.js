@@ -1,20 +1,18 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-// import Header from '@/vews/Pruebavue'
-import Feed from '@/views/Feed'
-// import Pictures from '@/views/Pictures'
-import VueMaterial from 'vue-material'
-import login from '@/views/Login'
-import 'vue-material/dist/vue-material.min.css'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Feed from '@/views/Feed';
+import VueMaterial from 'vue-material';
+import login from '@/views/Login';
+import 'vue-material/dist/vue-material.min.css';
+import firebase from 'firebase';
 
 Vue.use(Router)
 Vue.use(VueMaterial)
 
 //en este archivo únicamente se importan las vistas
 
-export default new Router({
-  routes: [
-    {
+const router = new Router({
+  routes: [{
       path: '/',
       name: 'login',
       component: login
@@ -22,7 +20,10 @@ export default new Router({
     {
       path: '/feed',
       name: 'Feed',
-      component: Feed
+      component: Feed,
+      meta: {
+        requiresAuth: true
+      }
     },
     // { //Rutas dinámicas
     //   path: '/pictures/:id',
@@ -31,3 +32,16 @@ export default new Router({
     // }
   ]
 })
+
+//evaluando si hay alguna ruta protegida :D
+router.beforeEach((to, from, next) => {
+  const needsAuth = to.matched.some(record => record.meta.requiresAuth)
+  const user = firebase.auth().currentUser;
+  if(needsAuth && !user){
+    next('/');
+  }else{
+    next();
+  }
+})
+
+export default router

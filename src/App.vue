@@ -8,10 +8,10 @@
         <!-- Agregar botón de logout -->
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li>
-            <router-link to="/">Home</router-link>
+            <router-link to="/" v-if="!isAUser">Home</router-link>
           </li>
           <li>
-            <router-link to="/feed">Feed</router-link>
+            <router-link to="/feed" v-if="isAUser">Feed</router-link>
           </li>
           <!-- <li>
             <router-link to="/pictures/:id">Fotografías</router-link>
@@ -25,19 +25,20 @@
         </ul>
       </div>
     </nav>
-    <div></div>
     <router-view/>
-    <!-- Acá abajo importo el componente List dentro del html -->
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "App",
   methods: {
     ...mapActions(['signOut'])
+  }, 
+  computed:{
+    ...mapGetters(['isAUser'])
   }
 };
 </script>
