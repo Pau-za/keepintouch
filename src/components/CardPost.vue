@@ -1,17 +1,18 @@
 <template>
   <div>
     <div class="col s12 m7">
-      <!-- <h2 class="header">Horizontal Card</h2> -->
+      <h2 class="header" v-for="post in posts" :key="post.id">{{post.name}}</h2>
       <div class="card horizontal">
         <div class="card-image">
           <img class="profile-img" src="https://lorempixel.com/100/190/nature/6">
         </div>
         <div class="card-stacked">
           <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.</p>
+            <p v-for="post of posts" :key="post.id">{{post.postContent}}</p>
           </div>
           <div class="card-action">
-            <a href="#">This is a link</a>
+            <a href="#">Edit</a>
+            <a href="#">Delete</a>
           </div>
         </div>
       </div>
@@ -20,15 +21,18 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "CardPost",
-  methods:{
-      ...mapActions(['getPosts'])
+  methods: {
+    ...mapActions(["getPosts"])
   },
-  created(){
-      this.getPosts()
+  created() {
+    this.getPosts();
+  },
+  computed: {
+    ...mapState(["posts"])
   }
 };
 </script>

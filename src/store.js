@@ -20,6 +20,9 @@ export default new Vuex.Store({
     },
     setError(state, payload) {
       state.error = payload;
+    },
+    setPosts(state, posts){
+     state.posts = posts; 
     }
   },
   actions: {
@@ -77,13 +80,18 @@ export default new Vuex.Store({
       router.replace('/');
     },
     getPosts({commit}){
+      const posts = [];
       db.collection("posts").get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          console.log(doc.id);
-          console.log(doc.data());
+          // console.log(doc.id);
+          // console.log(doc.data());
+          let post = doc.data();
+          post.id = doc.id;
+          posts.push(post);
         });
       })
+      commit('setPosts', posts);
     }
   },
   getters:{
