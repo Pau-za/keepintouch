@@ -11,8 +11,7 @@
             <p v-for="post of posts" :key="post.id">{{post.postContent}}</p>
           </div>
           <div class="card-action">
-            <a href="#">Edit</a>
-            <a href="#">Delete</a>
+           <modalEdit/>
           </div>
         </div>
       </div>
@@ -22,9 +21,13 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import modalEdit from "@/components/ModalEdit";
 
 export default {
   name: "CardPost",
+  components:{
+      modalEdit
+  },
   methods: {
     ...mapActions(["getPosts"])
   },

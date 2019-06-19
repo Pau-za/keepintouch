@@ -21,8 +21,8 @@ export default new Vuex.Store({
     setError(state, payload) {
       state.error = payload;
     },
-    setPosts(state, posts){
-     state.posts = posts; 
+    setPosts(state, posts) {
+      state.posts = posts;
     }
   },
   actions: {
@@ -64,41 +64,50 @@ export default new Vuex.Store({
     observer({
       commit
     }, payload) {
-      if(payload != null){
+      if (payload != null) {
         commit('setUser', {
           email: payload.email,
           uid: payload.uid,
           displayName: payload.displayName
         })
-      }else{
+      } else {
         commit('setUser', null)
       }
     },
-    signOut({commit}){
+    signOut({
+      commit
+    }) {
       firebase.auth().signOut();
-      commit('setUser',null);
+      commit('setUser', null);
       router.replace('/');
     },
-    getPosts({commit}){
+    getPosts({
+      commit
+    }) {
       const posts = [];
       db.collection("posts").get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          // console.log(doc.id);
-          // console.log(doc.data());
-          let post = doc.data();
-          post.id = doc.id;
-          posts.push(post);
-        });
-      })
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            let post = doc.data();
+            post.id = doc.id;
+            posts.push(post);
+          });
+        })
       commit('setPosts', posts);
+    },
+    getOnePost({commit}, id){
+      db.collection("posts").doc(id).get()
+      .then(doc => {
+        console.log(doc.data());
+        console.log(doc.id);
+      })
     }
   },
-  getters:{
-    isAUser(state){
-      if(state.user === null || state.user === '' || state.user === undefined){
+  getters: {
+    isAUser(state) {
+      if (state.user === null || state.user === '' || state.user === undefined) {
         return false;
-      }else{
+      } else {
         return true;
       }
     }
