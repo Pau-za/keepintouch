@@ -5,7 +5,7 @@ import {
 import store from '@/store'
 import router from '../router';
 // const firebase = require('firebase/app');
-// require('firebase/firestore');
+import firestore from 'firebase/firestore';
 
 const config = {
   apiKey: "AIzaSyDzfim0zJx50ISN8TEQ4PXKT56SAsNpx4w",
@@ -33,6 +33,8 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 })
 
-export {
-  fb
-};
+const db = firebase.firestore(fb);
+
+// export default fb.firestore();
+
+export default db

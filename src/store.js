@@ -2,17 +2,17 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import 'es6-promise/auto';
 import firebase from 'firebase';
-import {
-  fb
-} from "./js/firebase";
+import db from "./js/firebase";
 import router from './router'
+// import  from './js/firebase';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     user: null,
-    error: null
+    error: null,
+    posts: []
   },
   mutations: {
     setUser(state, payload) {
@@ -75,6 +75,15 @@ export default new Vuex.Store({
       firebase.auth().signOut();
       commit('setUser',null);
       router.replace('/');
+    },
+    getPosts({commit}){
+      db.collection("posts").get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          console.log(doc.id);
+          console.log(doc.data());
+        });
+      })
     }
   },
   getters:{
