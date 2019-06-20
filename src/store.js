@@ -118,6 +118,7 @@ export default new Vuex.Store({
       })
       .then((doc) => {
         console.log(doc.id);
+        postContent = '';
       })
     },
     editAPost({commit}, post){

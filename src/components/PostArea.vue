@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row container">
-      <form class="col s12" @submit.prevent="addNewPost(postContent)">
+      <form class="col s12" @submit.prevent="addNewPost(postContent),clearTextArea()">
         <div class="row">
           <div class="input-field col s12">
             <textarea id="textarea1" class="materialize-textarea" v-model="postContent"></textarea>
@@ -28,11 +28,16 @@ export default {
   name: "PostArea",
   data() {
     return {
-      postContent: ''
+      postContent: '',
+    
+
     };
   },
   methods: {
-    ...mapActions(["addNewPost"])
+    ...mapActions(["addNewPost"]),
+    clearTextArea(){
+      this.postContent = '';
+    }
   }
 };
 </script>
