@@ -11,7 +11,7 @@
               type="submit"
               name="action"
             >
-              Submit
+              Post
               <i class="material-icons right">send</i>
             </button>
           </div>

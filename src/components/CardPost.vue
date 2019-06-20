@@ -21,6 +21,15 @@
                 <i class="material-icons right">edit</i>
               </button>
             </router-link>
+            <button
+              class="btn waves-effect waves-light light-blue darken-1"
+              type="submit"
+              name="action"
+              @click="deletePost(post.id)"
+            >
+              Delete
+              <i class="material-icons right">delete_forever</i>
+            </button>
           </div>
         </div>
       </div>
@@ -38,7 +47,7 @@ export default {
   //     modalEdit
   // },
   methods: {
-    ...mapActions(["getPosts"]),
+    ...mapActions(["getPosts","deletePost"]),
     getId() {
       const idDoc = document.getElementById(`${post.id}`);
       console.log(idDoc);

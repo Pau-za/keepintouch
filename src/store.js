@@ -29,8 +29,17 @@ export default new Vuex.Store({
       state.posts = posts;
     },
     setOnlyPost(state, post){
-      state.post = post;
-    }
+      state.posts = post;
+    },
+    deletePostFromArr(state, id){
+      state.posts = state.posts.filter(post => {
+        return post.id != id;
+      })
+    },
+    // addNewPostToArr(state, post){
+    //   state.posts = state.posts.push(post)
+    //   return state.posts;
+    // }
   },
   actions: {
     createUser({
@@ -117,8 +126,19 @@ export default new Vuex.Store({
         postContent:postContent
       })
       .then((doc) => {
+        const id = doc.id;
         console.log(doc.id);
         postContent = '';
+        // this.posts.push(doc)
+        // commit('addNewPostToArr', doc);
+        this.dispatch('getPosts')
+      })
+    },
+    deletePost({commit}, id){
+      db.collection("posts").doc(id).delete()
+      .then(() => {
+        console.log('La tarea con el id' + id + 'fue eliminada con éxito');
+        commit('deletePostFromArr', id);
       })
     },
     editAPost({commit}, post){
