@@ -11,7 +11,16 @@
             <p v-for="post of posts" :key="post.id">{{post.postContent}}</p>
           </div>
           <div class="card-action">
-           <modalEdit/>
+            <router-link v-for="post of posts" :key="post.id" :to="{name:'edit', params:{id: post.id}}">
+              <button
+                class="btn waves-effect waves-light light-blue darken-1"
+                type="submit"
+                name="action"
+              >
+                Edit
+                <i class="material-icons right">edit</i>
+              </button>
+            </router-link>
           </div>
         </div>
       </div>
@@ -21,15 +30,19 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import modalEdit from "@/components/ModalEdit";
+// import modalEdit from "@/components/ModalEdit";
 
 export default {
   name: "CardPost",
-  components:{
-      modalEdit
-  },
+  // components:{
+  //     modalEdit
+  // },
   methods: {
-    ...mapActions(["getPosts"])
+    ...mapActions(["getPosts"]),
+    getId() {
+      const idDoc = document.getElementById(`${post.id}`);
+      console.log(idDoc);
+    }
   },
   created() {
     this.getPosts();

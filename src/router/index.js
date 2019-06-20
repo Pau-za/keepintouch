@@ -3,8 +3,10 @@ import Router from 'vue-router';
 import Feed from '@/views/Feed';
 import VueMaterial from 'vue-material';
 import login from '@/views/Login';
+import Edit from '@/views/Edit';
 import 'vue-material/dist/vue-material.min.css';
 import firebase from 'firebase';
+
 
 Vue.use(Router)
 Vue.use(VueMaterial)
@@ -25,11 +27,11 @@ const router = new Router({
         requiresAuth: true
       }
     },
-    // { //Rutas dinámicas
-    //   path: '/pictures/:id',
-    //   name: 'pictures',
-    //   component: Pictures
-    // }
+    { //Rutas dinámicas
+      path: '/edit/:id',
+      name: 'edit',
+      component: Edit
+    }
   ]
 })
 

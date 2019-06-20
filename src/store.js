@@ -12,7 +12,11 @@ export default new Vuex.Store({
   state: {
     user: null,
     error: null,
-    posts: []
+    posts: [],
+    post:{
+      postContent: null,
+      id: null
+    }
   },
   mutations: {
     setUser(state, payload) {
@@ -23,6 +27,9 @@ export default new Vuex.Store({
     },
     setPosts(state, posts) {
       state.posts = posts;
+    },
+    setOnlyPost(state, post){
+      state.post = post;
     }
   },
   actions: {
@@ -35,8 +42,8 @@ export default new Vuex.Store({
           console.log(res.user.uid);
           commit('setUser', {
             email: res.user.email,
-            uid: res.user.uid,
-            displayName: res.user.displayName
+            uid: res.user.uid
+            // displayName: res.user.displayName
           });
           router.replace('feed');
         })
@@ -98,8 +105,19 @@ export default new Vuex.Store({
     getOnePost({commit}, id){
       db.collection("posts").doc(id).get()
       .then(doc => {
-        console.log(doc.data());
-        console.log(doc.id);
+        // console.log(doc.data());
+        // console.log(doc.id);
+        let post = doc.data();
+        post.id = doc.id;
+        commit('setOnlyPost', post);
+      })
+    },
+    editAPost({commit}, post){
+      db.collection("posts").doc(post.id).update({
+        postContent: post.postContent
+      })
+      .then(()=>{
+        router.push('/feed')
       })
     }
   },
