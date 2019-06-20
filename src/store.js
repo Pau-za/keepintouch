@@ -112,6 +112,14 @@ export default new Vuex.Store({
         commit('setOnlyPost', post);
       })
     },
+    addNewPost({commit},postContent){
+      db.collection('posts').add({
+        postContent:postContent
+      })
+      .then((doc) => {
+        console.log(doc.id);
+      })
+    },
     editAPost({commit}, post){
       db.collection("posts").doc(post.id).update({
         postContent: post.postContent

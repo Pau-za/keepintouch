@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div class="col s12 m7">
-      <h2 class="header" v-for="post in posts" :key="post.id">{{post.name}}</h2>
+    <div class="col s12 m7" v-for="post of posts" :key="post.id">
       <div class="card horizontal">
         <div class="card-image">
           <img class="profile-img" src="https://lorempixel.com/100/190/nature/6">
         </div>
         <div class="card-stacked">
+          <h2 class="header">{{post.name}}</h2>
           <div class="card-content">
-            <p v-for="post of posts" :key="post.id">{{post.postContent}}</p>
+            <p>{{post.postContent}}</p>
           </div>
           <div class="card-action">
-            <router-link v-for="post of posts" :key="post.id" :to="{name:'edit', params:{id: post.id}}">
+            <router-link :to="{name:'edit', params:{id: post.id}}">
               <button
                 class="btn waves-effect waves-light light-blue darken-1"
                 type="submit"
