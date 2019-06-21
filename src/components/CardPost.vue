@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="col s12 m7" v-for="post of posts" :key="post.id">
+    <div  v-for="post of posts" :key="post.id">
       <div class="card horizontal">
-        <div class="card-image">
+        <!-- <div class="card-image">
           <img class="profile-img" src="https://lorempixel.com/100/190/nature/6">
-        </div>
+        </div> -->
         <div class="card-stacked">
           <h2 class="header">{{post.name}}</h2>
           <div class="card-content">

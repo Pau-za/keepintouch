@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="row container">
-      <form class="col s12" @submit.prevent="addNewPost(postContent),clearTextArea()">
+    <div>
+      <form @submit.prevent="addNewPost(postContent),clearTextArea()">
         <div class="row">
-          <div class="input-field col s12">
+          <div class="input-field">
             <textarea id="textarea1" class="materialize-textarea" v-model="postContent"></textarea>
             <label for="textarea1">What are you thinking?</label>
             <button
-              class="btn waves-effect waves-light"
+              class="btn waves-effect waves-light light-blue darken-1"
               type="submit"
               name="action"
             >
