@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <img src="../assets/shorter_mainpic.jpg" alt="picture">
+      <img src="../assets/shorter_mainpic.jpg" alt="" id="main-pic">
     </div>
     <h3>Welcome to KeepInTouch</h3>
     <h5>The social network for MER students</h5>
@@ -36,4 +36,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#main-pic{
+  width: 100%;
+}
+</style>
 
