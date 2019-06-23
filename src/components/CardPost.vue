@@ -8,7 +8,7 @@
         <div class="card-stacked">
           <h2 class="header">{{post.name}}</h2>
           <div class="card-content">
-            <p>{{post.postContent}}</p>
+            <p v-html="post.postContent"></p>
           </div>
           <div class="card-action">
             <router-link :to="{name:'edit', params:{id: post.id}}">
@@ -51,13 +51,23 @@ export default {
     getId() {
       const idDoc = document.getElementById(`${post.id}`);
       console.log(idDoc);
+    },
+     convert() {
+      // var text=document.getElementById("url").value;
+      const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+      const text = this.postContent.replace(exp, `<a href='${1}'>${1}</a>`);
+      const exp2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+      this.postWithURL = text.replace(
+        exp2,
+        `${1}<a target="_blank" href="http://${2}">${2}</a>`
+      );
     }
   },
   created() {
     this.getPosts();
   },
   computed: {
-    ...mapState(["posts"])
+    ...mapState(["posts"])    
   }
 };
 </script>

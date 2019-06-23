@@ -10,10 +10,12 @@
               class="btn waves-effect waves-light light-blue darken-1"
               type="submit"
               name="action"
+              @click="convert()"
             >
               Post
               <i class="material-icons right">send</i>
             </button>
+            acá está la url {{postContent}}
           </div>
         </div>
       </form>
@@ -28,15 +30,25 @@ export default {
   name: "PostArea",
   data() {
     return {
-      postContent: '',
-    
-
+      postContent: "",
+      postWithURL: ""
     };
   },
   methods: {
     ...mapActions(["addNewPost"]),
-    clearTextArea(){
-      this.postContent = '';
+    clearTextArea() {
+      this.postContent = "";
+    },
+    convert() {
+      // var text=document.getElementById("url").value;
+      const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+      this.postWithURL = this.postContent.replace(exp, "<a href='$1'>$1</a>");
+      const exp2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+      this.postContent = this.postWithURL.replace(
+        exp2,
+        `${1}<a target="_blank" href="http://${2}">${2}</a>`
+      );
+      console.log(this.postContent);
     }
   }
 };
