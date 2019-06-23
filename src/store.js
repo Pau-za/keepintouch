@@ -10,10 +10,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: null,
+    user: {
+      displayName: null,
+      lastName: null,
+      email: null,
+      uid: null,
+      posts: null,
+      nationality: null,
+      interests: null
+    },
     error: null,
     posts: [],
-    post:{
+    post: {
       postContent: null,
       id: null
     }
@@ -28,10 +36,10 @@ export default new Vuex.Store({
     setPosts(state, posts) {
       state.posts = posts;
     },
-    setOnlyPost(state, post){
+    setOnlyPost(state, post) {
       state.posts = post;
     },
-    deletePostFromArr(state, id){
+    deletePostFromArr(state, id) {
       state.posts = state.posts.filter(post => {
         return post.id != id;
       })
@@ -52,9 +60,12 @@ export default new Vuex.Store({
           commit('setUser', {
             email: res.user.email,
             uid: res.user.uid
-            // displayName: res.user.displayName
           });
-          router.replace('feed');
+          db.collection(res.user.uid).add({
+            email: res.user.email
+          }).then(() => {
+            router.replace('feed');
+          })
         })
         .catch((error) => {
           console.log(error.message);
@@ -111,43 +122,64 @@ export default new Vuex.Store({
         })
       commit('setPosts', posts);
     },
-    getOnePost({commit}, id){
+    getOnePost({
+      commit
+    }, id) {
       db.collection("posts").doc(id).get()
-      .then(doc => {
-        // console.log(doc.data());
-        // console.log(doc.id);
-        let post = doc.data();
-        post.id = doc.id;
-        commit('setOnlyPost', post);
-      })
+        .then(doc => {
+          // console.log(doc.data());
+          // console.log(doc.id);
+          let post = doc.data();
+          post.id = doc.id;
+          commit('setOnlyPost', post);
+        })
     },
-    addNewPost({commit},postContent){
+    userInfo({commit},user){
+      const currentUser = firebase.auth().currentUser();
+      console.log(currentUser);
+      db.collection(currentUser.uid).get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            let post = doc.data();
+            post.id = doc.id;
+            posts.push(post);
+          });
+        })
+      commit('setPosts', posts);
+    },
+    addNewPost({
+      commit
+    }, postContent) {
       db.collection('posts').add({
-        postContent:postContent
-      })
-      .then((doc) => {
-        const id = doc.id;
-        console.log(doc.id);
-        postContent = '';
-        // this.posts.push(doc)
-        // commit('addNewPostToArr', doc);
-        this.dispatch('getPosts')
-      })
+          postContent: postContent
+        })
+        .then((doc) => {
+          const id = doc.id;
+          console.log(doc.id);
+          postContent = '';
+          // this.posts.push(doc)
+          // commit('addNewPostToArr', doc);
+          this.dispatch('getPosts')
+        })
     },
-    deletePost({commit}, id){
+    deletePost({
+      commit
+    }, id) {
       db.collection("posts").doc(id).delete()
-      .then(() => {
-        console.log('La tarea con el id' + id + 'fue eliminada con éxito');
-        commit('deletePostFromArr', id);
-      })
+        .then(() => {
+          console.log('La tarea con el id' + id + 'fue eliminada con éxito');
+          commit('deletePostFromArr', id);
+        })
     },
-    editAPost({commit}, post){
+    editAPost({
+      commit
+    }, post) {
       db.collection("posts").doc(post.id).update({
-        postContent: post.postContent
-      })
-      .then(()=>{
-        router.push('/feed')
-      })
+          postContent: post.postContent
+        })
+        .then(() => {
+          router.push('/feed')
+        })
     }
   },
   getters: {

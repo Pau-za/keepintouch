@@ -4,7 +4,9 @@ import Feed from '@/views/Feed';
 import VueMaterial from 'vue-material';
 import login from '@/views/Login';
 import Edit from '@/views/Edit';
-import 'vue-material/dist/vue-material.min.css';
+import UserInformation from '@/views/UserInformation';
+
+// import 'vue-material/dist/vue-material.min.css';
 import firebase from 'firebase';
 
 
@@ -31,7 +33,16 @@ const router = new Router({
       path: '/edit/:id',
       name: 'edit',
       component: Edit
+    },
+    {
+      path: '/userInformation',
+      name: 'UserInformation',
+      component: UserInformation,
+      meta: {
+        requiresAuth: true
+      }
     }
+
   ]
 })
 
@@ -39,9 +50,9 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const needsAuth = to.matched.some(record => record.meta.requiresAuth)
   const user = firebase.auth().currentUser;
-  if(needsAuth && !user){
+  if (needsAuth && !user) {
     next('/');
-  }else{
+  } else {
     next();
   }
 })

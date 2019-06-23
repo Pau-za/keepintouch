@@ -13,9 +13,9 @@
           <li>
             <router-link to="/feed" v-if="isAUser">Feed</router-link>
           </li>
-          <!-- <li>
-            <router-link to="/pictures/:id">Fotografías</router-link>
-          </li> -->
+          <li>
+            <router-link to="/userInformation" v-if="isAUser">User Info</router-link>
+          </li>
           <li>
             <a class="waves-effect waves-light btn light-blue darken-1" @click="signOut()">
               Sign out

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <img src="../assets/shorter_mainpic.jpg" alt="">
+      <img src="../assets/shorter_mainpic.jpg" alt="picture">
     </div>
     <h3>Welcome to KeepInTouch</h3>
     <h5>The social network for MER students</h5>

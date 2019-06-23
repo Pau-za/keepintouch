@@ -4,11 +4,11 @@
     <h3>Welcome {{user.displayName}}</h3>
     <!-- <p>{{ user.uid }}</p> -->
     <div class="row">
-      <div class="col s12 m7 l7">
+      <div class="col s12 m12 l7">
         <PostArea/>
         <CardPost />
       </div>
-      <div class="col s12 m5 l5">
+      <div class="col s12 m12 l5">
         <ShowNews/>
       </div>
     </div>

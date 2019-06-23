@@ -15,7 +15,6 @@
               Post
               <i class="material-icons right">send</i>
             </button>
-            acá está la url {{postContent}}
           </div>
         </div>
       </form>
