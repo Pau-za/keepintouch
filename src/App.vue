@@ -5,7 +5,9 @@
         <a href="#" class="brand-logo right">
           <img src="./assets/MER_sm.png" alt="mer-logo" class="mer-logo">
         </a>
-        <!-- Agregar botón de logout -->
+        <a href="#" class="sidenav-trigger" data-target="side-menu">
+          <i class="material-icons">menu</i>
+        </a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li>
             <router-link to="/" v-if="!isAUser">Home</router-link>
@@ -14,7 +16,7 @@
             <router-link to="/feed" v-if="isAUser">Feed</router-link>
           </li>
           <li>
-            <router-link to="/userInformation" v-if="isAUser">User Info</router-link>
+            <router-link to="/userInformation" v-if="isAUser">User Infor</router-link>
           </li>
           <li>
             <a class="waves-effect waves-light btn light-blue darken-1" @click="signOut()">
@@ -25,6 +27,32 @@
         </ul>
       </div>
     </nav>
+    <ul class="sidenav" id="side-menu">
+      <li>
+        <router-link to="/" v-if="!isAUser">Home</router-link>
+      </li>
+      <!-- <li>
+        <div class="divider"></div>
+      </li> -->
+      <li>
+        <router-link to="/feed" v-if="isAUser">Feed</router-link>
+      </li>
+      <!-- <li>
+        <div class="divider"></div>
+      </li> -->
+      <li>
+        <router-link to="/userInformation" v-if="isAUser">User Infor</router-link>
+      </li>
+      <!-- <li>
+        <div class="divider"></div>
+      </li> -->
+      <li>
+        <a class="waves-effect waves-light btn light-blue darken-1" @click="signOut()">
+          Sign out
+          <i class="material-icons right">exit_to_app</i>
+        </a>
+      </li>
+    </ul>
     <router-view/>
   </div>
 </template>
@@ -35,10 +63,14 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "App",
   methods: {
-    ...mapActions(['signOut'])
-  }, 
-  computed:{
-    ...mapGetters(['isAUser'])
+    activate: document.addEventListener("DOMContentLoaded", () => {
+      var elems = document.querySelectorAll(".sidenav");
+      var instances = M.Sidenav.init(elems);
+    }),
+    ...mapActions(["signOut"])
+  },
+  computed: {
+    ...mapGetters(["isAUser"])
   }
 };
 </script>
