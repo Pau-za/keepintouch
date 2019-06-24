@@ -22,8 +22,8 @@ export default new Vuex.Store({
     error: null,
     posts: [],
     post: {
-      postContent: null,
-      id: null
+      postContent: '',
+      id: ''
     }
   },
   mutations: {
@@ -37,7 +37,7 @@ export default new Vuex.Store({
       state.posts = posts;
     },
     setOnlyPost(state, post) {
-      state.posts = post;
+      state.post = post;
     },
     deletePostFromArr(state, id) {
       state.posts = state.posts.filter(post => {
@@ -127,10 +127,10 @@ export default new Vuex.Store({
     }, id) {
       db.collection("posts").doc(id).get()
         .then(doc => {
-          // console.log(doc.data());
-          // console.log(doc.id);
-          let post = doc.data();
+          console.log(doc.id);
+          const post = doc.data();
           post.id = doc.id;
+          console.log(post);
           commit('setOnlyPost', post);
         })
     },

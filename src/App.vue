@@ -27,7 +27,7 @@
         </ul>
       </div>
     </nav>
-    <ul class="sidenav" id="side-menu">
+    <ul class="sidenav grey" id="side-menu">
       <li>
         <router-link to="/" v-if="!isAUser">Home</router-link>
       </li>
