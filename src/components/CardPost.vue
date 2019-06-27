@@ -2,9 +2,6 @@
   <div>
     <div  v-for="post of posts" :key="post.id">
       <div class="card horizontal">
-        <!-- <div class="card-image">
-          <img class="profile-img" src="https://lorempixel.com/100/190/nature/6">
-        </div> -->
         <div class="card-stacked">
           <h2 class="header">{{post.name}}</h2>
           <div class="card-content">
@@ -39,13 +36,9 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-// import modalEdit from "@/components/ModalEdit";
 
 export default {
   name: "CardPost",
-  // components:{
-  //     modalEdit
-  // },
   methods: {
     ...mapActions(["getPosts","deletePost"]),
     getId() {

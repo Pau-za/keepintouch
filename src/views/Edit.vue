@@ -2,7 +2,6 @@
   <div class="container">
     <h3>Edit your post</h3>
     <form @submit="editAPost(post)">
-      {{id}} {{post}}
       <input type="text" v-model="post.postContent">
       <button class="btn waves-effect waves-light light-blue darken-1" type="submit" name="action" @click="convert()">
         Edit

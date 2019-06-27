@@ -4,7 +4,7 @@ import 'es6-promise/auto';
 import firebase from 'firebase';
 import db from "./js/firebase";
 import router from './router'
-// import  from './js/firebase';
+
 
 Vue.use(Vuex)
 
@@ -157,8 +157,6 @@ export default new Vuex.Store({
           const id = doc.id;
           console.log(doc.id);
           postContent = '';
-          // this.posts.push(doc)
-          // commit('addNewPostToArr', doc);
           this.dispatch('getPosts')
         })
     },
